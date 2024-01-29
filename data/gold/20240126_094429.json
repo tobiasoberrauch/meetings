@@ -1,0 +1,1902 @@
+{
+    "text": " Nicht, wenn wir das nicht einhalten. Das ist uns ja schon aufgefallen, dass du, wenn du den Linter gelaufen lassen hast, dass der quasi alle Dateien überarbeitet hat. Und normalerweise würde die Bild-Type-Line da schon brechen, weil wir halt die Zeilenlänge überstreiten, nur die zulässige. So, das heißt, eigentlich wollten wir in diesem Ticket mit der Nummer... Jetzt habe ich es gerade nicht. Moment, ich gucke gerade. Müs müsste im Backlog sein, oder? Ja, im Backlog, genau. Ich hab hier so eine Security-Hotspot, 10.7.30. Ne, die 11.27. 11.27, Moment. Ah ja, Kurzqualität prüfen im Herstellen. Genau, so. Das heißt, momentan ist es so, dass in der GitLab CI-PyML quasi ein Poetry-Skript aufgerufen wird, also das Poetry-Skript, da werden die Linter-Ergebnisse nicht zurückgespiegelt und das führt dazu, dass zwar das Linting ausgeführt wird, aber halt wie gesagt, wie wir das bisher ignoriert hatten. So, das heißt, ein Teil der Aufgabe wäre es halt, einmal die GitLab CI an einer Stelle anzupassen, zumindest für die Python-Projekte, die wir haben und da einmal den Linter so zu konfigurieren, dass quasi das Ergebnis des Lintings halt dazu führt, dass der Bild bricht, wenn es nicht korrekt ist. Und im Zuge dessen würde ich das ganz gerne auch auf unterschiedliche Jobs aufteilen. Also es ist momentan ja so, dass die Linter, dass es nur ein Linter Skript gibt und das ruft halt Pylint, Black, Iceford und MyPi auf und die würde ich einfach in unterschiedliche Jobs packen, die dann halt auch unterschiedlich fällen können. Also da muss halt einfach nur auf Skript-Ebene quasi das Ergebnis zurückgegeben werden. Entweder als Exception, weil es halt ein Check-Subprozess ist, der aufgerufen wird, oder halt den Return-Status-Code, wenn der ungleich Null ist, dann würde der Job an der Stelle aufbrechen. So, das wäre quasi der erste Schritt. Ja, kurz eine Frage dazu, also in Poetry Scripts dann schon die Subprozesse trennen voneinander, damit ich es gezielt aufrufen kann. Ja, ja, genau. Das wäre quasi der erste Schritt. Das würde ich aber auch erstmal nur in einem Branch machen und dann innerhalb des selben Branches soll dann halt die Pipeline laufen und dann geht es halt darum, dass man dann halt einmal sukzessive diese Fehler trivial löst. Also im Zweifel, dass man einmal einen Linter fix laufen lässt oder wenn es dann halt irgendwie tatsächlich nur Zahlenumbrüche sind oder keine Ahnung was, dass wir dann halt mal gucken. Je nachdem, wenn die zu umfangreich sind, die Änderungen oder die Probleme, die da an der Stelle auftreten, dann müssten wir da gegebenenfalls Tickets draus generieren. Ja, also wenn es einfache Sachen sind, einfach lösen. Wenn es zu kompliziert ist, müssten wir eigentlich mal gucken, dass wir ein Ticket dazu lösen beziehungsweise sonst kriegen wir wahrscheinlich die Palpline ja nicht währends Rennen. Das heißt, eigentlich müssen wir es ja lösen. Ich habe aber aktuell keine Vorstellung davon, wie umfangreich das sein wird. ja nicht werden das heißt eigentlich müssen wir ja lösen aktuell keine keine vorstellung davon wie wie umfangreich also deswegen wäre jetzt halt erstmal der erste schritt hat sich die pipeline anzupassen und dann einmal sich einen überblick zu verschaffen wie viel wie viel aufwand das tatsächlich ist und Und genau, wenn es zu krass ist, dann müssten wir dann halt überlegen. Aber das kann ich mir eigentlich nicht vorstellen. Nee, wir müssen es auf jeden Fall lösen. Und für welchen Repos reden wir da? Management Service? Und? Auf jeden Fall dem BoomUp Service Lib. Dem Management Service. Eigentlich Auf jeden Fall dem BoomUp Service Lib, dem Management Service. Eigentlich auch der Home-Server-Config, weil das auf jeden Fall ja früher oder später auch nochmal kommen wird, aber das könnten wir jetzt im ersten Schritt vernachlässigen, weil wir es jetzt ordentlich nach OpenCode schicken. Deswegen würde ich es vielleicht auch so ausvorlassen an der Stelle. Genau, und dann die Frontend-Geschichten. Da müsste man jetzt halt eigentlich nochmal mit den Kollegen Rücksprache halten, was sie eigentlich noch an Themen haben. Ja, ob die Linter und so weiter und so fort, ob die diese Dinge alle schon eingehalten haben. Beziehungsweise dann müsste man halt auch mal draufschauen. Aber da gab es ja ein anderes Ticket mit dem Security Hotspot. Das ist ja gerade schon vorgelesen, was dann aus dem Sonar Cube kommt. Genau, da können wir einmal in den Sonar Cube reingucken. Bei unseren Services habe ich da immer wieder reingeguckt und das sah eigentlich immer gut aus. Deswegen glaube ich, wäre jetzt tatsächlich der erste Schritt, einfach nur das Linting auslaufen zu kriegen. Genau, und das einmal zu korrigieren. Und für die Backend-Services, genau, und dann könnten wir im selben Schritt, könnte man sich jetzt nochmal angucken, es ist halt so, dass das GitLab CI momentan vor jedem Run quasi eine Poetry-Installation macht. Das würde ich gerne rausnehmen und dass wir einfach nur dieses Environment, das VN verzeichnet, dass wir das dann halt zwischen den Jobs sharen. Ähnlich wie das Frontend das macht. Damit wir da an der Stelle nicht immer eine Installation mit drin haben, das führt einfach zu langen Laufzeiten, die wir nicht brauchen. Okay, damit ich es verstehen kann, das heißt, es wird einmal für alle Jobs am Anfang erstmal installiert und dann wird es gar nicht mehr neu installiert, sondern einfach wieder benutzt. Genau. Ah, okay, verstehe. Das heißt, du würdest eine Installphase, einen Installjob implementieren im GitLab CI, wo dann halt die Installation von den Abhängigkeiten stattfindet und dann würdest du als Part dieses Installationsverzeichnis an die anderen Jobs übergeben und dann können die das nutzen. Aha, okay, super, dann mache ich das so. Dann finde ich jetzt erstmal den Aufwand heraus und dokumentiere dann direkt im Ticket. Genau, super, dann mache ich das so. Dann finde ich jetzt erstmal den Aufwand heraus und dokumentiere dann direkt dem Ticket. Genau, super. Und ich weiß nicht, wird dem Ticket, gibt ihm eine 5, weil es halt unbekannt ist. Ich bin mir jetzt noch nicht ganz sicher, was mit dem Frontend ist. Vielleicht kann man auch gerade den Nick noch dazu nehmen. Dann kann man ja nochmal fragen, was der da sieht. Ja, ich probiere gerade mal was aus Ich bin da, ja. So, Teilnehmer einladen. Probier's mal aus. Ja, ich bin noch da? Ja. Ja. Der ist noch in einem anderen Chor. Ja. Der ist noch in einem anderen Call. Genau. Dann dann lassen wir uns gerade noch mal schauen, was wir aus der Pipeline selber ableiten können. Also ich gehe mal gerade auf die Pipeline von denen. Mache ich auch mal. auf die pipeline und den mach ich auch mal wo starten wir boom app oder ja lass mal boom app starten ok moment boom app codes bild pipeline BoomUpApp, Code, Bildpipeline. Das letzte Mal war ein Image not found. Gibt es da wieder ein Problem beim Pullen? Letzte Mal Image not found. Ja, das allerletzte. Gestern von Jürgen hat er irgendwas gemacht. Ja, das ist schon wieder hier dieses Proxy-Problem. Image not found. Proxy Problem Und Found Das ist glaube ich wenn diese Win Specified Polyvisties Always Error Ausbunden des anderen Artefaktes Irgendwas ist da wieder mit dem Proxy nicht richtig Ah da muss man sich nochmal aufschreiben was der Fehler bedeutet Kann ich mir nicht merken. Egal, aber wenn wir uns heute den letzten Develop-Bild mal anschauen. Zwei Tage her sollte das sein. Setup. Immer noch Loading-Bild. V-Test. immer noch loading bild wie test sind prätier lindt typescript So, der erste sieht gut aus, Lin-Type-Script. Was heißt das? Weißt du, was das minus no emit macht? Wo bist du gerade? In dem Lint-Type-Script-Job. Also ich bin auf die Develop-Pipeline gegangen und bin gerade die Linter-Ergebnisse mal an. Die sehen aber soweit erstmal gut aus. Es kann schon sein, dass sie im Frontend da an der Stelle einfach schon weiter waren oder weiter sind, weil der Nick da mehr Augenmerk drauf gelegt hatte. Die laufen alle durch, oder? Ja, die laufen alle durch, aber die laufen ja bei uns auch durch. Die Frage ist, haben die das an der Stelle auch korrekt ausgewertet? Also, dass quasi der Return-Code an die Pipeline zurückgegeben wird. Wenn der Return-Code nicht an die Pipeline gegeben wird, das ist ja das, was wir momentan in unserem Skript haben, das Problem, dann bricht auch die Pipeline nicht und dann läuft auch die Pipeline durch. Mhm. So, aber das ich komm grad dieses no emit seh ich jetzt auch grad Do not emit compiler output files. Also Source Maps werden da nicht generiert. Das ist wie so ein Mapping von TypeScript auf JavaScript. Output Files. Und AutoCompletion hat das glaube ich auch mit zu tun für die IDE. Gut, dann sieht das erstmal gut aus. So, Sonar Cube läuft. Was auch immer die Ergebnisse sind, da würde ich jetzt mal kurz drauf gucken. So, das sieht ja mittlerweile so aus. Sind auf jeden Fall 10 Codesmails aufräumen. Also das heißt, Linter sind erstmal ok, SonarCube, da gibt es Codesmails. Das sieht jetzt wie das im Overall-Code sieht, da sind so 10 Stück angekreidet. Ich würde mir jetzt gerade überlegen, ob wir die schon angehen sollen oder ob wir die in angehen sollen oder würde ich einen separaten Task machen? Ich würde einen separaten Task nehmen. Ja, ich glaube auch. Ja, okay. Dann würde ich mich tatsächlich in dem Ticket darauf beschränken, dass wir jetzt halt für die Python-Services erstmal die Pipeline fixen und also sprich, dass wenn halt die Linting-Regeln gebrochen werden, dass die Pipeline bricht und dass wir das, was jetzt aktuell zum Bruch führt, dass wir das korrigieren. Dann lassen wir das Frontend erstmal aus dem Vorhang erstellen. Ja, okay. Das heißt, das FI kannst du wegnehmen aus dem Ticket, dann kannst du bitte noch ergänzen, dass die Installation als eigener Job genutzt werden soll und die Artefakte dann an die anderen Jobs übergeben wird und dass die Linting-Prozesse eigenständige Jobs sind innerhalb der CSD-Partner. Ja, werde ich dann dokumentieren. Genau, und dass dann halt die Linting-Verletzungen, dass die dann halt wieder repariert werden sollten. Mhm. Was würdest du dem geben? Als Schätzung? Ich dachte zwischen 3 und 5. Tendierst du eher zu 3 oder eher zu 5? Ja, also da ich kann es irgendwie tatsächlich nicht abschätzen, wie kompliziert es ist, die Sachen da zu fixen, wenn es dann wirklich nur ein Fixlauf ist. Dann wäre es wahrscheinlich tatsächlich eine 3. Ich glaube ich würde eher zu einer 3 kippen. Ok, dann trage ich mal die 3 ein und dann dokumentiere ich gleich noch. Ok, super, perfekt. Aber genau, dann vielleicht eher, ich weiß nicht in welche Reihenfolge jetzt, sonst du kondimentierst das erstmal, denk immer bitte daran, dass wir den Commit fertig kriegen, den Coach Review. MR, ja. Den MR, genau, damit die Kollegen dann ihr Ticket fertig machen können. Das mache ich jetzt als erstes. Ja, super. Gut. Alles klar, ich gebe dir dann gleich Bescheid. Bis später. Ja. Ciao.",
+    "chunks": [
+        {
+            "timestamp": [
+                0.0,
+                1.66
+            ],
+            "text": " Nicht, wenn wir das nicht einhalten."
+        },
+        {
+            "timestamp": [
+                1.86,
+                5.2
+            ],
+            "text": " Das ist uns ja schon aufgefallen, dass du, wenn du den Linter gelaufen lassen hast,"
+        },
+        {
+            "timestamp": [
+                5.3,
+                7.34
+            ],
+            "text": " dass der quasi alle Dateien überarbeitet hat."
+        },
+        {
+            "timestamp": [
+                8.0,
+                10.14
+            ],
+            "text": " Und normalerweise würde die Bild-Type-Line da schon brechen,"
+        },
+        {
+            "timestamp": [
+                10.24,
+                13.38
+            ],
+            "text": " weil wir halt die Zeilenlänge überstreiten, nur die zulässige."
+        },
+        {
+            "timestamp": [
+                14.2,
+                18.0
+            ],
+            "text": " So, das heißt, eigentlich wollten wir in diesem Ticket mit der Nummer..."
+        },
+        {
+            "timestamp": [
+                18.68,
+                20.2
+            ],
+            "text": " Jetzt habe ich es gerade nicht."
+        },
+        {
+            "timestamp": [
+                23.32,
+                25.5
+            ],
+            "text": " Moment, ich gucke gerade. Müs müsste im Backlog sein, oder?"
+        },
+        {
+            "timestamp": [
+                27.86,
+                29.6
+            ],
+            "text": " Ja, im Backlog, genau."
+        },
+        {
+            "timestamp": [
+                29.9,
+                33.54
+            ],
+            "text": " Ich hab hier so eine Security-Hotspot, 10.7.30."
+        },
+        {
+            "timestamp": [
+                34.76,
+                36.08
+            ],
+            "text": " Ne, die 11.27."
+        },
+        {
+            "timestamp": [
+                38.08,
+                40.44
+            ],
+            "text": " 11.27, Moment."
+        },
+        {
+            "timestamp": [
+                41.82,
+                44.64
+            ],
+            "text": " Ah ja, Kurzqualität prüfen im Herstellen."
+        },
+        {
+            "timestamp": [
+                46.02,
+                54.84
+            ],
+            "text": " Genau, so. Das heißt, momentan ist es so, dass in der GitLab CI-PyML quasi ein Poetry-Skript aufgerufen wird,"
+        },
+        {
+            "timestamp": [
+                54.92,
+                61.9
+            ],
+            "text": " also das Poetry-Skript, da werden die Linter-Ergebnisse nicht zurückgespiegelt"
+        },
+        {
+            "timestamp": [
+                61.9,
+                65.06
+            ],
+            "text": " und das führt dazu, dass zwar das Linting ausgeführt wird, aber"
+        },
+        {
+            "timestamp": [
+                66.0,
+                68.66
+            ],
+            "text": " halt wie gesagt, wie wir das bisher ignoriert hatten."
+        },
+        {
+            "timestamp": [
+                68.86,
+                77.8
+            ],
+            "text": " So, das heißt, ein Teil der Aufgabe wäre es halt, einmal die GitLab CI an einer Stelle anzupassen, zumindest für die Python-Projekte, die wir haben"
+        },
+        {
+            "timestamp": [
+                78.6,
+                83.72
+            ],
+            "text": " und da einmal den Linter so zu konfigurieren, dass quasi das Ergebnis des Lintings"
+        },
+        {
+            "timestamp": [
+                84.24,
+                85.72
+            ],
+            "text": " halt dazu führt, dass der Bild"
+        },
+        {
+            "timestamp": [
+                85.72,
+                87.72
+            ],
+            "text": " bricht, wenn es nicht korrekt ist."
+        },
+        {
+            "timestamp": [
+                88.84,
+                89.86
+            ],
+            "text": " Und im Zuge dessen würde ich"
+        },
+        {
+            "timestamp": [
+                89.86,
+                91.7
+            ],
+            "text": " das ganz gerne auch auf unterschiedliche Jobs"
+        },
+        {
+            "timestamp": [
+                91.7,
+                93.82
+            ],
+            "text": " aufteilen. Also es ist momentan ja so,"
+        },
+        {
+            "timestamp": [
+                94.0,
+                95.86
+            ],
+            "text": " dass die Linter,"
+        },
+        {
+            "timestamp": [
+                95.86,
+                97.36
+            ],
+            "text": " dass es nur ein Linter"
+        },
+        {
+            "timestamp": [
+                97.36,
+                99.76
+            ],
+            "text": " Skript gibt und das ruft halt"
+        },
+        {
+            "timestamp": [
+                99.76,
+                101.98
+            ],
+            "text": " Pylint, Black, Iceford und MyPi auf"
+        },
+        {
+            "timestamp": [
+                101.98,
+                104.12
+            ],
+            "text": " und die würde ich einfach in unterschiedliche"
+        },
+        {
+            "timestamp": [
+                104.12,
+                106.06
+            ],
+            "text": " Jobs packen, die dann halt"
+        },
+        {
+            "timestamp": [
+                106.06,
+                107.6
+            ],
+            "text": " auch unterschiedlich fällen können."
+        },
+        {
+            "timestamp": [
+                107.94,
+                110.0
+            ],
+            "text": " Also da muss halt einfach nur"
+        },
+        {
+            "timestamp": [
+                110.0,
+                111.98
+            ],
+            "text": " auf Skript-Ebene quasi das Ergebnis"
+        },
+        {
+            "timestamp": [
+                111.98,
+                113.72
+            ],
+            "text": " zurückgegeben werden. Entweder als Exception,"
+        },
+        {
+            "timestamp": [
+                113.86,
+                115.78
+            ],
+            "text": " weil es halt ein Check-Subprozess ist,"
+        },
+        {
+            "timestamp": [
+                115.82,
+                117.06
+            ],
+            "text": " der aufgerufen wird, oder halt"
+        },
+        {
+            "timestamp": [
+                117.06,
+                119.8
+            ],
+            "text": " den Return-Status-Code, wenn der"
+        },
+        {
+            "timestamp": [
+                119.8,
+                122.0
+            ],
+            "text": " ungleich Null ist, dann würde der Job an der Stelle aufbrechen."
+        },
+        {
+            "timestamp": [
+                122.72,
+                123.9
+            ],
+            "text": " So, das wäre quasi der erste"
+        },
+        {
+            "timestamp": [
+                123.9,
+                126.3
+            ],
+            "text": " Schritt. Ja, kurz eine Frage"
+        },
+        {
+            "timestamp": [
+                126.3,
+                128.12
+            ],
+            "text": " dazu, also in Poetry Scripts"
+        },
+        {
+            "timestamp": [
+                128.12,
+                130.1
+            ],
+            "text": " dann schon die Subprozesse"
+        },
+        {
+            "timestamp": [
+                130.1,
+                132.1
+            ],
+            "text": " trennen voneinander, damit ich es gezielt"
+        },
+        {
+            "timestamp": [
+                132.1,
+                132.98
+            ],
+            "text": " aufrufen kann."
+        },
+        {
+            "timestamp": [
+                134.08,
+                135.54
+            ],
+            "text": " Ja, ja, genau. Das wäre"
+        },
+        {
+            "timestamp": [
+                135.54,
+                137.56
+            ],
+            "text": " quasi der erste Schritt."
+        },
+        {
+            "timestamp": [
+                139.18,
+                140.12
+            ],
+            "text": " Das würde ich aber auch"
+        },
+        {
+            "timestamp": [
+                140.12,
+                141.96
+            ],
+            "text": " erstmal nur in einem Branch machen und dann"
+        },
+        {
+            "timestamp": [
+                141.96,
+                144.0
+            ],
+            "text": " innerhalb des selben Branches soll"
+        },
+        {
+            "timestamp": [
+                144.0,
+                145.52
+            ],
+            "text": " dann halt die Pipeline laufen und"
+        },
+        {
+            "timestamp": [
+                145.52,
+                147.88
+            ],
+            "text": " dann geht es halt darum, dass man dann halt"
+        },
+        {
+            "timestamp": [
+                147.88,
+                149.82
+            ],
+            "text": " einmal sukzessive diese Fehler"
+        },
+        {
+            "timestamp": [
+                149.82,
+                152.18
+            ],
+            "text": " trivial"
+        },
+        {
+            "timestamp": [
+                152.18,
+                154.12
+            ],
+            "text": " löst."
+        },
+        {
+            "timestamp": [
+                154.62,
+                155.6
+            ],
+            "text": " Also im Zweifel,"
+        },
+        {
+            "timestamp": [
+                155.98,
+                158.04
+            ],
+            "text": " dass man einmal einen Linter fix laufen lässt"
+        },
+        {
+            "timestamp": [
+                158.04,
+                159.88
+            ],
+            "text": " oder wenn es dann halt irgendwie tatsächlich"
+        },
+        {
+            "timestamp": [
+                159.88,
+                162.14
+            ],
+            "text": " nur Zahlenumbrüche sind oder keine Ahnung was,"
+        },
+        {
+            "timestamp": [
+                162.94,
+                163.78
+            ],
+            "text": " dass wir dann halt mal gucken."
+        },
+        {
+            "timestamp": [
+                163.9,
+                166.42
+            ],
+            "text": " Je nachdem, wenn die zu umfangreich sind, die Änderungen oder"
+        },
+        {
+            "timestamp": [
+                166.42,
+                168.5
+            ],
+            "text": " die Probleme, die da an der Stelle auftreten,"
+        },
+        {
+            "timestamp": [
+                168.6,
+                170.14
+            ],
+            "text": " dann müssten wir da gegebenenfalls Tickets"
+        },
+        {
+            "timestamp": [
+                170.14,
+                172.5
+            ],
+            "text": " draus generieren. Ja, also wenn es"
+        },
+        {
+            "timestamp": [
+                172.5,
+                174.04
+            ],
+            "text": " einfache Sachen sind, einfach lösen."
+        },
+        {
+            "timestamp": [
+                174.66,
+                176.06
+            ],
+            "text": " Wenn es zu kompliziert ist,"
+        },
+        {
+            "timestamp": [
+                176.52,
+                178.6
+            ],
+            "text": " müssten wir eigentlich mal gucken, dass wir ein Ticket dazu lösen"
+        },
+        {
+            "timestamp": [
+                178.6,
+                180.48
+            ],
+            "text": " beziehungsweise sonst kriegen wir wahrscheinlich die Palpline ja nicht"
+        },
+        {
+            "timestamp": [
+                180.48,
+                182.48
+            ],
+            "text": " währends Rennen. Das heißt, eigentlich müssen wir"
+        },
+        {
+            "timestamp": [
+                182.48,
+                183.06
+            ],
+            "text": " es ja lösen."
+        },
+        {
+            "timestamp": [
+                184.28,
+                185.0
+            ],
+            "text": " Ich habe aber aktuell keine Vorstellung davon, wie umfangreich das sein wird. ja nicht werden das heißt eigentlich müssen wir ja lösen"
+        },
+        {
+            "timestamp": [
+                185.0,
+                192.12
+            ],
+            "text": " aktuell keine keine vorstellung davon wie wie umfangreich also deswegen wäre"
+        },
+        {
+            "timestamp": [
+                192.12,
+                198.62
+            ],
+            "text": " jetzt halt erstmal der erste schritt hat sich die pipeline anzupassen und dann"
+        },
+        {
+            "timestamp": [
+                198.62,
+                202.44
+            ],
+            "text": " einmal sich einen überblick zu verschaffen wie viel wie viel aufwand"
+        },
+        {
+            "timestamp": [
+                202.44,
+                205.98
+            ],
+            "text": " das tatsächlich ist und Und genau, wenn es"
+        },
+        {
+            "timestamp": [
+                205.98,
+                208.54
+            ],
+            "text": " zu krass ist,"
+        },
+        {
+            "timestamp": [
+                208.76,
+                210.34
+            ],
+            "text": " dann müssten wir dann halt überlegen."
+        },
+        {
+            "timestamp": [
+                210.98,
+                212.14
+            ],
+            "text": " Aber das kann ich mir eigentlich nicht vorstellen."
+        },
+        {
+            "timestamp": [
+                212.94,
+                214.08
+            ],
+            "text": " Nee, wir müssen es auf jeden Fall lösen."
+        },
+        {
+            "timestamp": [
+                214.52,
+                216.3
+            ],
+            "text": " Und für welchen Repos reden wir da?"
+        },
+        {
+            "timestamp": [
+                216.38,
+                218.2
+            ],
+            "text": " Management Service? Und?"
+        },
+        {
+            "timestamp": [
+                220.04,
+                221.18
+            ],
+            "text": " Auf jeden Fall dem"
+        },
+        {
+            "timestamp": [
+                221.18,
+                224.52
+            ],
+            "text": " BoomUp Service Lib."
+        },
+        {
+            "timestamp": [
+                224.92,
+                225.84
+            ],
+            "text": " Dem Management Service. Eigentlich Auf jeden Fall dem BoomUp Service Lib, dem Management"
+        },
+        {
+            "timestamp": [
+                225.84,
+                226.46
+            ],
+            "text": " Service."
+        },
+        {
+            "timestamp": [
+                228.02,
+                229.04
+            ],
+            "text": " Eigentlich auch der"
+        },
+        {
+            "timestamp": [
+                229.04,
+                230.36
+            ],
+            "text": " Home-Server-Config,"
+        },
+        {
+            "timestamp": [
+                230.84,
+                233.16
+            ],
+            "text": " weil das auf jeden Fall ja früher oder später"
+        },
+        {
+            "timestamp": [
+                233.16,
+                235.16
+            ],
+            "text": " auch nochmal kommen wird, aber das könnten"
+        },
+        {
+            "timestamp": [
+                235.16,
+                236.84
+            ],
+            "text": " wir jetzt im ersten Schritt vernachlässigen,"
+        },
+        {
+            "timestamp": [
+                236.96,
+                239.18
+            ],
+            "text": " weil wir es jetzt ordentlich nach OpenCode schicken."
+        },
+        {
+            "timestamp": [
+                239.82,
+                241.0
+            ],
+            "text": " Deswegen würde ich es vielleicht auch"
+        },
+        {
+            "timestamp": [
+                241.0,
+                242.34
+            ],
+            "text": " so ausvorlassen an der Stelle."
+        },
+        {
+            "timestamp": [
+                245.94,
+                248.54
+            ],
+            "text": " Genau, und dann die Frontend-Geschichten."
+        },
+        {
+            "timestamp": [
+                248.74,
+                251.94
+            ],
+            "text": " Da müsste man jetzt halt eigentlich nochmal mit den Kollegen Rücksprache halten,"
+        },
+        {
+            "timestamp": [
+                252.0,
+                253.66
+            ],
+            "text": " was sie eigentlich noch an Themen haben."
+        },
+        {
+            "timestamp": [
+                253.98,
+                255.64
+            ],
+            "text": " Ja, ob die Linter und so weiter und so fort,"
+        },
+        {
+            "timestamp": [
+                255.7,
+                257.96
+            ],
+            "text": " ob die diese Dinge alle schon eingehalten haben."
+        },
+        {
+            "timestamp": [
+                259.18,
+                262.04
+            ],
+            "text": " Beziehungsweise dann müsste man halt auch mal draufschauen."
+        },
+        {
+            "timestamp": [
+                262.16,
+                264.7
+            ],
+            "text": " Aber da gab es ja ein anderes Ticket mit dem Security Hotspot."
+        },
+        {
+            "timestamp": [
+                264.7,
+                266.2
+            ],
+            "text": " Das ist ja gerade schon vorgelesen,"
+        },
+        {
+            "timestamp": [
+                266.3,
+                267.96
+            ],
+            "text": " was dann aus dem Sonar Cube"
+        },
+        {
+            "timestamp": [
+                267.96,
+                268.3
+            ],
+            "text": " kommt."
+        },
+        {
+            "timestamp": [
+                271.3,
+                271.98
+            ],
+            "text": " Genau, da können wir"
+        },
+        {
+            "timestamp": [
+                271.98,
+                273.28
+            ],
+            "text": " einmal in den Sonar Cube reingucken."
+        },
+        {
+            "timestamp": [
+                273.82,
+                276.06
+            ],
+            "text": " Bei unseren Services"
+        },
+        {
+            "timestamp": [
+                276.06,
+                277.76
+            ],
+            "text": " habe ich da immer wieder reingeguckt und das"
+        },
+        {
+            "timestamp": [
+                277.76,
+                280.08
+            ],
+            "text": " sah eigentlich immer gut aus. Deswegen glaube ich,"
+        },
+        {
+            "timestamp": [
+                280.08,
+                281.7
+            ],
+            "text": " wäre jetzt tatsächlich der erste Schritt,"
+        },
+        {
+            "timestamp": [
+                282.02,
+                283.7
+            ],
+            "text": " einfach nur das Linting auslaufen zu kriegen."
+        },
+        {
+            "timestamp": [
+                285.86,
+                286.08
+            ],
+            "text": " Genau,"
+        },
+        {
+            "timestamp": [
+                286.2,
+                287.3
+            ],
+            "text": " und das einmal zu korrigieren."
+        },
+        {
+            "timestamp": [
+                287.94,
+                289.84
+            ],
+            "text": " Und für die"
+        },
+        {
+            "timestamp": [
+                289.84,
+                292.18
+            ],
+            "text": " Backend-Services, genau, und dann könnten wir im selben"
+        },
+        {
+            "timestamp": [
+                292.18,
+                293.96
+            ],
+            "text": " Schritt, könnte man sich jetzt"
+        },
+        {
+            "timestamp": [
+                293.96,
+                295.64
+            ],
+            "text": " nochmal angucken, es ist halt so, dass das"
+        },
+        {
+            "timestamp": [
+                295.64,
+                297.52
+            ],
+            "text": " GitLab CI momentan"
+        },
+        {
+            "timestamp": [
+                297.52,
+                298.54
+            ],
+            "text": " vor jedem"
+        },
+        {
+            "timestamp": [
+                298.54,
+                301.48
+            ],
+            "text": " Run quasi eine"
+        },
+        {
+            "timestamp": [
+                301.48,
+                303.14
+            ],
+            "text": " Poetry-Installation macht."
+        },
+        {
+            "timestamp": [
+                303.96,
+                305.94
+            ],
+            "text": " Das würde ich gerne rausnehmen"
+        },
+        {
+            "timestamp": [
+                305.94,
+                308.42
+            ],
+            "text": " und dass wir einfach nur"
+        },
+        {
+            "timestamp": [
+                308.42,
+                310.34
+            ],
+            "text": " dieses Environment,"
+        },
+        {
+            "timestamp": [
+                311.84,
+                313.18
+            ],
+            "text": " das VN"
+        },
+        {
+            "timestamp": [
+                313.18,
+                314.68
+            ],
+            "text": " verzeichnet,"
+        },
+        {
+            "timestamp": [
+                314.76,
+                316.42
+            ],
+            "text": " dass wir das dann halt zwischen den Jobs sharen."
+        },
+        {
+            "timestamp": [
+                317.6,
+                318.12
+            ],
+            "text": " Ähnlich wie das"
+        },
+        {
+            "timestamp": [
+                318.12,
+                319.06
+            ],
+            "text": " Frontend das macht."
+        },
+        {
+            "timestamp": [
+                319.7,
+                320.58
+            ],
+            "text": " Damit wir da an der Stelle"
+        },
+        {
+            "timestamp": [
+                320.58,
+                324.78
+            ],
+            "text": " nicht immer eine Installation mit drin haben,"
+        },
+        {
+            "timestamp": [
+                324.92,
+                327.98
+            ],
+            "text": " das führt einfach zu langen Laufzeiten,"
+        },
+        {
+            "timestamp": [
+                328.06,
+                331.64
+            ],
+            "text": " die wir nicht brauchen. Okay, damit ich es verstehen kann, das heißt, es wird einmal"
+        },
+        {
+            "timestamp": [
+                331.64,
+                335.8
+            ],
+            "text": " für alle Jobs am Anfang erstmal installiert und dann wird es gar nicht"
+        },
+        {
+            "timestamp": [
+                335.8,
+                339.64
+            ],
+            "text": " mehr neu installiert, sondern einfach wieder benutzt. Genau."
+        },
+        {
+            "timestamp": [
+                340.04,
+                343.2
+            ],
+            "text": " Ah, okay, verstehe. Das heißt, du würdest eine Installphase,"
+        },
+        {
+            "timestamp": [
+                343.86,
+                347.78
+            ],
+            "text": " einen Installjob implementieren im GitLab CI,"
+        },
+        {
+            "timestamp": [
+                348.78,
+                349.9
+            ],
+            "text": " wo dann halt die Installation"
+        },
+        {
+            "timestamp": [
+                349.9,
+                351.76
+            ],
+            "text": " von den Abhängigkeiten"
+        },
+        {
+            "timestamp": [
+                351.76,
+                353.4
+            ],
+            "text": " stattfindet und dann würdest du"
+        },
+        {
+            "timestamp": [
+                353.4,
+                354.9
+            ],
+            "text": " als Part dieses"
+        },
+        {
+            "timestamp": [
+                354.9,
+                357.66
+            ],
+            "text": " Installationsverzeichnis"
+        },
+        {
+            "timestamp": [
+                357.66,
+                359.82
+            ],
+            "text": " an die anderen Jobs übergeben und dann können die das nutzen."
+        },
+        {
+            "timestamp": [
+                360.52,
+                361.82
+            ],
+            "text": " Aha, okay, super,"
+        },
+        {
+            "timestamp": [
+                361.92,
+                362.56
+            ],
+            "text": " dann mache ich das so."
+        },
+        {
+            "timestamp": [
+                363.46,
+                365.22
+            ],
+            "text": " Dann finde ich jetzt erstmal den Aufwand heraus und dokumentiere dann direkt im Ticket. Genau, super, dann mache ich das so. Dann finde ich jetzt erstmal den Aufwand heraus"
+        },
+        {
+            "timestamp": [
+                365.22,
+                366.74
+            ],
+            "text": " und dokumentiere dann direkt dem Ticket."
+        },
+        {
+            "timestamp": [
+                368.96,
+                369.6
+            ],
+            "text": " Genau, super."
+        },
+        {
+            "timestamp": [
+                369.92,
+                371.18
+            ],
+            "text": " Und ich weiß nicht,"
+        },
+        {
+            "timestamp": [
+                371.22,
+                371.72
+            ],
+            "text": " wird dem Ticket,"
+        },
+        {
+            "timestamp": [
+                373.2,
+                375.18
+            ],
+            "text": " gibt ihm eine 5, weil es halt unbekannt ist."
+        },
+        {
+            "timestamp": [
+                375.26,
+                377.3
+            ],
+            "text": " Ich bin mir jetzt noch nicht ganz sicher, was mit dem Frontend ist."
+        },
+        {
+            "timestamp": [
+                378.92,
+                379.5
+            ],
+            "text": " Vielleicht kann man"
+        },
+        {
+            "timestamp": [
+                379.5,
+                381.14
+            ],
+            "text": " auch gerade den Nick noch dazu nehmen."
+        },
+        {
+            "timestamp": [
+                381.66,
+                383.34
+            ],
+            "text": " Dann kann man ja nochmal fragen, was der da sieht."
+        },
+        {
+            "timestamp": [
+                384.2,
+                388.0
+            ],
+            "text": " Ja, ich probiere gerade mal was aus"
+        },
+        {
+            "timestamp": [
+                405.08,
+                408.08
+            ],
+            "text": " Ich bin da, ja. So, Teilnehmer einladen."
+        },
+        {
+            "timestamp": [
+                408.08,
+                411.08
+            ],
+            "text": " Probier's mal aus."
+        },
+        {
+            "timestamp": [
+                411.08,
+                442.6
+            ],
+            "text": " Ja, ich bin noch da?"
+        },
+        {
+            "timestamp": [
+                442.98,
+                443.24
+            ],
+            "text": " Ja."
+        },
+        {
+            "timestamp": [
+                443.24,
+                443.38
+            ],
+            "text": " Ja."
+        },
+        {
+            "timestamp": [
+                446.24,
+                447.56
+            ],
+            "text": " Der ist noch in einem anderen Chor. Ja. Der ist noch in einem anderen Call."
+        },
+        {
+            "timestamp": [
+                448.56,
+                449.28
+            ],
+            "text": " Genau."
+        },
+        {
+            "timestamp": [
+                450.06,
+                450.32
+            ],
+            "text": " Dann"
+        },
+        {
+            "timestamp": [
+                450.32,
+                455.58
+            ],
+            "text": " dann lassen wir uns"
+        },
+        {
+            "timestamp": [
+                455.58,
+                456.86
+            ],
+            "text": " gerade noch mal schauen, was wir"
+        },
+        {
+            "timestamp": [
+                456.86,
+                459.76
+            ],
+            "text": " aus der Pipeline selber ableiten können."
+        },
+        {
+            "timestamp": [
+                460.68,
+                461.52
+            ],
+            "text": " Also ich gehe mal"
+        },
+        {
+            "timestamp": [
+                461.52,
+                462.62
+            ],
+            "text": " gerade auf die Pipeline"
+        },
+        {
+            "timestamp": [
+                462.62,
+                464.26
+            ],
+            "text": " von denen."
+        },
+        {
+            "timestamp": [
+                469.6,
+                486.62
+            ],
+            "text": " Mache ich auch mal. auf die pipeline und den mach ich auch mal wo starten wir boom app oder ja lass mal boom app starten ok moment boom app codes bild pipeline BoomUpApp, Code, Bildpipeline."
+        },
+        {
+            "timestamp": [
+                499.78,
+                505.46
+            ],
+            "text": " Das letzte Mal war ein Image not found. Gibt es da wieder ein Problem beim Pullen?"
+        },
+        {
+            "timestamp": [
+                508.84,
+                510.34
+            ],
+            "text": " Letzte Mal Image not found."
+        },
+        {
+            "timestamp": [
+                512.0,
+                513.32
+            ],
+            "text": " Ja, das allerletzte."
+        },
+        {
+            "timestamp": [
+                514.02,
+                516.06
+            ],
+            "text": " Gestern von Jürgen hat er irgendwas gemacht."
+        },
+        {
+            "timestamp": [
+                516.58,
+                520.82
+            ],
+            "text": " Ja, das ist schon wieder hier dieses Proxy-Problem."
+        },
+        {
+            "timestamp": [
+                523.08,
+                524.1
+            ],
+            "text": " Image not found."
+        },
+        {
+            "timestamp": [
+                521.0,
+                524.0
+            ],
+            "text": " Proxy Problem Und Found"
+        },
+        {
+            "timestamp": [
+                524.0,
+                531.0
+            ],
+            "text": " Das ist glaube ich wenn diese Win Specified Polyvisties Always Error"
+        },
+        {
+            "timestamp": [
+                531.0,
+                534.0
+            ],
+            "text": " Ausbunden des anderen Artefaktes"
+        },
+        {
+            "timestamp": [
+                534.0,
+                537.0
+            ],
+            "text": " Irgendwas ist da wieder mit dem Proxy nicht richtig"
+        },
+        {
+            "timestamp": [
+                537.0,
+                544.0
+            ],
+            "text": " Ah da muss man sich nochmal aufschreiben was der Fehler bedeutet"
+        },
+        {
+            "timestamp": [
+                544.0,
+                546.0
+            ],
+            "text": " Kann ich mir nicht merken."
+        },
+        {
+            "timestamp": [
+                546.0,
+                553.0
+            ],
+            "text": " Egal, aber wenn wir uns heute den letzten Develop-Bild mal anschauen."
+        },
+        {
+            "timestamp": [
+                555.0,
+                560.0
+            ],
+            "text": " Zwei Tage her sollte das sein. Setup."
+        },
+        {
+            "timestamp": [
+                561.0,
+                563.0
+            ],
+            "text": " Immer noch Loading-Bild."
+        },
+        {
+            "timestamp": [
+                564.0,
+                593.88
+            ],
+            "text": " V-Test. immer noch loading bild wie test sind prätier lindt typescript So, der erste sieht gut aus, Lin-Type-Script."
+        },
+        {
+            "timestamp": [
+                593.88,
+                607.36
+            ],
+            "text": " Was heißt das?"
+        },
+        {
+            "timestamp": [
+                611.82,
+                613.86
+            ],
+            "text": " Weißt du, was das minus no emit macht?"
+        },
+        {
+            "timestamp": [
+                614.62,
+                615.52
+            ],
+            "text": " Wo bist du gerade?"
+        },
+        {
+            "timestamp": [
+                616.92,
+                618.82
+            ],
+            "text": " In dem Lint-Type-Script-Job."
+        },
+        {
+            "timestamp": [
+                618.92,
+                620.46
+            ],
+            "text": " Also ich bin auf die"
+        },
+        {
+            "timestamp": [
+                620.46,
+                621.84
+            ],
+            "text": " Develop-Pipeline gegangen und bin"
+        },
+        {
+            "timestamp": [
+                621.84,
+                624.28
+            ],
+            "text": " gerade die Linter-Ergebnisse"
+        },
+        {
+            "timestamp": [
+                624.28,
+                624.7
+            ],
+            "text": " mal an."
+        },
+        {
+            "timestamp": [
+                625.72,
+                627.32
+            ],
+            "text": " Die sehen aber soweit erstmal gut aus."
+        },
+        {
+            "timestamp": [
+                627.48,
+                629.26
+            ],
+            "text": " Es kann schon sein, dass sie im Frontend da an der Stelle"
+        },
+        {
+            "timestamp": [
+                629.26,
+                631.68
+            ],
+            "text": " einfach schon weiter waren oder weiter sind,"
+        },
+        {
+            "timestamp": [
+                631.78,
+                633.58
+            ],
+            "text": " weil der Nick da mehr Augenmerk"
+        },
+        {
+            "timestamp": [
+                633.58,
+                635.84
+            ],
+            "text": " drauf gelegt hatte. Die laufen alle durch,"
+        },
+        {
+            "timestamp": [
+                636.12,
+                636.4
+            ],
+            "text": " oder?"
+        },
+        {
+            "timestamp": [
+                639.06,
+                640.04
+            ],
+            "text": " Ja, die laufen"
+        },
+        {
+            "timestamp": [
+                640.04,
+                641.64
+            ],
+            "text": " alle durch, aber die laufen ja bei uns auch durch."
+        },
+        {
+            "timestamp": [
+                642.22,
+                643.92
+            ],
+            "text": " Die Frage ist, haben die das an der Stelle"
+        },
+        {
+            "timestamp": [
+                643.92,
+                645.88
+            ],
+            "text": " auch korrekt ausgewertet?"
+        },
+        {
+            "timestamp": [
+                646.14,
+                648.2
+            ],
+            "text": " Also, dass quasi der Return-Code"
+        },
+        {
+            "timestamp": [
+                648.2,
+                650.02
+            ],
+            "text": " an die Pipeline zurückgegeben wird."
+        },
+        {
+            "timestamp": [
+                650.6,
+                652.32
+            ],
+            "text": " Wenn der Return-Code nicht an die Pipeline"
+        },
+        {
+            "timestamp": [
+                652.32,
+                653.8
+            ],
+            "text": " gegeben wird, das ist ja das, was wir"
+        },
+        {
+            "timestamp": [
+                653.8,
+                656.0
+            ],
+            "text": " momentan in unserem Skript haben,"
+        },
+        {
+            "timestamp": [
+                656.08,
+                658.26
+            ],
+            "text": " das Problem, dann bricht auch die Pipeline"
+        },
+        {
+            "timestamp": [
+                658.26,
+                659.82
+            ],
+            "text": " nicht und dann läuft auch die Pipeline durch."
+        },
+        {
+            "timestamp": [
+                660.42,
+                660.74
+            ],
+            "text": " Mhm."
+        },
+        {
+            "timestamp": [
+                664.36,
+                666.0
+            ],
+            "text": " So, aber das"
+        },
+        {
+            "timestamp": [
+                666.0,
+                668.0
+            ],
+            "text": " ich komm grad"
+        },
+        {
+            "timestamp": [
+                672.0,
+                694.2
+            ],
+            "text": " dieses no emit seh ich jetzt auch grad Do not emit compiler output files."
+        },
+        {
+            "timestamp": [
+                694.2,
+                706.0
+            ],
+            "text": " Also Source Maps werden da nicht generiert. Das ist wie so ein Mapping von TypeScript auf JavaScript."
+        },
+        {
+            "timestamp": [
+                706.0,
+                708.0
+            ],
+            "text": " Output Files."
+        },
+        {
+            "timestamp": [
+                715.0,
+                728.0
+            ],
+            "text": " Und AutoCompletion hat das glaube ich auch mit zu tun für die IDE. Gut, dann sieht das erstmal gut aus. So, Sonar Cube läuft."
+        },
+        {
+            "timestamp": [
+                728.0,
+                733.0
+            ],
+            "text": " Was auch immer die Ergebnisse sind, da würde ich jetzt mal kurz drauf gucken."
+        },
+        {
+            "timestamp": [
+                740.0,
+                742.0
+            ],
+            "text": " So, das sieht ja mittlerweile so aus."
+        },
+        {
+            "timestamp": [
+                745.0,
+                774.56
+            ],
+            "text": " Sind auf jeden Fall 10 Codesmails aufräumen."
+        },
+        {
+            "timestamp": [
+                774.56,
+                785.98
+            ],
+            "text": " Also das heißt, Linter sind erstmal ok, SonarCube, da gibt es Codesmails. Das sieht jetzt wie das"
+        },
+        {
+            "timestamp": [
+                785.98,
+                791.44
+            ],
+            "text": " im Overall-Code sieht,"
+        },
+        {
+            "timestamp": [
+                791.54,
+                793.48
+            ],
+            "text": " da sind so 10 Stück angekreidet."
+        },
+        {
+            "timestamp": [
+                801.82,
+                803.08
+            ],
+            "text": " Ich würde mir jetzt gerade überlegen,"
+        },
+        {
+            "timestamp": [
+                803.16,
+                804.1
+            ],
+            "text": " ob wir die schon angehen sollen"
+        },
+        {
+            "timestamp": [
+                804.1,
+                806.52
+            ],
+            "text": " oder ob wir die in angehen sollen oder würde ich einen separaten Task machen?"
+        },
+        {
+            "timestamp": [
+                808.56,
+                810.76
+            ],
+            "text": " Ich würde einen separaten Task nehmen."
+        },
+        {
+            "timestamp": [
+                812.28,
+                813.36
+            ],
+            "text": " Ja, ich glaube auch."
+        },
+        {
+            "timestamp": [
+                815.78,
+                816.86
+            ],
+            "text": " Ja, okay."
+        },
+        {
+            "timestamp": [
+                817.06,
+                819.72
+            ],
+            "text": " Dann würde ich mich tatsächlich in dem Ticket darauf beschränken,"
+        },
+        {
+            "timestamp": [
+                819.8,
+                821.68
+            ],
+            "text": " dass wir jetzt halt für die Python-Services"
+        },
+        {
+            "timestamp": [
+                821.68,
+                825.84
+            ],
+            "text": " erstmal die Pipeline fixen"
+        },
+        {
+            "timestamp": [
+                825.84,
+                827.78
+            ],
+            "text": " und also sprich,"
+        },
+        {
+            "timestamp": [
+                827.9,
+                829.52
+            ],
+            "text": " dass wenn halt die Linting-Regeln"
+        },
+        {
+            "timestamp": [
+                829.52,
+                831.62
+            ],
+            "text": " gebrochen werden, dass die Pipeline bricht"
+        },
+        {
+            "timestamp": [
+                831.62,
+                833.76
+            ],
+            "text": " und dass wir das, was jetzt aktuell zum Bruch"
+        },
+        {
+            "timestamp": [
+                833.76,
+                834.86
+            ],
+            "text": " führt, dass wir das korrigieren."
+        },
+        {
+            "timestamp": [
+                835.72,
+                837.64
+            ],
+            "text": " Dann lassen wir das Frontend erstmal aus dem Vorhang erstellen."
+        },
+        {
+            "timestamp": [
+                838.22,
+                839.04
+            ],
+            "text": " Ja, okay."
+        },
+        {
+            "timestamp": [
+                839.46,
+                841.68
+            ],
+            "text": " Das heißt,"
+        },
+        {
+            "timestamp": [
+                841.82,
+                844.02
+            ],
+            "text": " das FI kannst du wegnehmen"
+        },
+        {
+            "timestamp": [
+                844.02,
+                844.56
+            ],
+            "text": " aus dem"
+        },
+        {
+            "timestamp": [
+                844.56,
+                865.56
+            ],
+            "text": " Ticket, dann kannst du bitte noch ergänzen, dass die Installation als eigener Job genutzt werden soll und die Artefakte dann an die anderen Jobs übergeben wird und dass die Linting-Prozesse eigenständige Jobs sind innerhalb der CSD-Partner."
+        },
+        {
+            "timestamp": [
+                866.1,
+                867.56
+            ],
+            "text": " Ja, werde ich dann dokumentieren."
+        },
+        {
+            "timestamp": [
+                868.86,
+                870.16
+            ],
+            "text": " Genau, und dass dann halt"
+        },
+        {
+            "timestamp": [
+                870.16,
+                872.16
+            ],
+            "text": " die Linting-Verletzungen,"
+        },
+        {
+            "timestamp": [
+                872.96,
+                874.0
+            ],
+            "text": " dass die dann halt"
+        },
+        {
+            "timestamp": [
+                874.0,
+                875.32
+            ],
+            "text": " wieder repariert werden sollten."
+        },
+        {
+            "timestamp": [
+                875.94,
+                876.18
+            ],
+            "text": " Mhm."
+        },
+        {
+            "timestamp": [
+                877.2,
+                879.46
+            ],
+            "text": " Was würdest du dem geben?"
+        },
+        {
+            "timestamp": [
+                880.04,
+                882.16
+            ],
+            "text": " Als Schätzung?"
+        },
+        {
+            "timestamp": [
+                883.88,
+                884.42
+            ],
+            "text": " Ich dachte"
+        },
+        {
+            "timestamp": [
+                884.42,
+                885.54
+            ],
+            "text": " zwischen 3 und 5."
+        },
+        {
+            "timestamp": [
+                888.94,
+                890.16
+            ],
+            "text": " Tendierst du eher zu 3"
+        },
+        {
+            "timestamp": [
+                890.16,
+                891.1
+            ],
+            "text": " oder eher zu 5?"
+        },
+        {
+            "timestamp": [
+                894.74,
+                895.92
+            ],
+            "text": " Ja, also"
+        },
+        {
+            "timestamp": [
+                895.92,
+                896.14
+            ],
+            "text": " da"
+        },
+        {
+            "timestamp": [
+                896.14,
+                900.26
+            ],
+            "text": " ich kann es irgendwie tatsächlich nicht abschätzen,"
+        },
+        {
+            "timestamp": [
+                900.38,
+                902.12
+            ],
+            "text": " wie kompliziert es ist, die Sachen da zu fixen,"
+        },
+        {
+            "timestamp": [
+                902.22,
+                904.1
+            ],
+            "text": " wenn es dann wirklich nur ein Fixlauf ist."
+        },
+        {
+            "timestamp": [
+                904.1,
+                904.54
+            ],
+            "text": " Dann"
+        },
+        {
+            "timestamp": [
+                904.54,
+                909.0
+            ],
+            "text": " wäre es wahrscheinlich tatsächlich eine 3."
+        },
+        {
+            "timestamp": [
+                909.0,
+                913.0
+            ],
+            "text": " Ich glaube ich würde eher zu einer 3 kippen."
+        },
+        {
+            "timestamp": [
+                913.0,
+                918.0
+            ],
+            "text": " Ok, dann trage ich mal die 3 ein und dann dokumentiere ich gleich noch."
+        },
+        {
+            "timestamp": [
+                918.0,
+                925.68
+            ],
+            "text": " Ok, super, perfekt. Aber genau, dann vielleicht eher, ich weiß nicht in welche Reihenfolge jetzt,"
+        },
+        {
+            "timestamp": [
+                925.68,
+                929.76
+            ],
+            "text": " sonst du kondimentierst das erstmal, denk immer bitte daran, dass wir den Commit fertig kriegen,"
+        },
+        {
+            "timestamp": [
+                929.76,
+                932.12
+            ],
+            "text": " den Coach Review. MR, ja."
+        },
+        {
+            "timestamp": [
+                932.12,
+                935.76
+            ],
+            "text": " Den MR, genau, damit die Kollegen dann ihr Ticket fertig machen können."
+        },
+        {
+            "timestamp": [
+                935.76,
+                940.24
+            ],
+            "text": " Das mache ich jetzt als erstes. Ja, super. Gut."
+        },
+        {
+            "timestamp": [
+                940.24,
+                943.24
+            ],
+            "text": " Alles klar, ich gebe dir dann gleich Bescheid. Bis später."
+        },
+        {
+            "timestamp": [
+                943.24,
+                945.18
+            ],
+            "text": " Ja. Ciao."
+        }
+    ]
+}
