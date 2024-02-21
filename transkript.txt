@@ -1,0 +1,122 @@
+CodeGaia: Ja, schön, dass es geklappt hat.
+CodeGaia: Ich habe gerade nochmal reingeschaut ins System und versucht herauszufinden, wie sie auf uns gekommen sind.
+Tobias: Das kann ich gerne alles erzählen.
+CodeGaia: Sehr gerne.
+Tobias: Ja, dann stelle ich mich kurz vor und was denn mein Hauptanliegen ist.
+Tobias: Also ich bin jetzt seit 20 Jahren in der IT-Branche gestartet als Programmierer.
+Tobias: Meine letzten Herausforderungen waren, dass ich als Berater unterwegs bin, sozusagen für Atos und CGI, aber ich bin auch im KI-Bundesverband sehr aktiv.
+Tobias: Ich leite die Regionalgruppe in Baden-Württemberg.
+Tobias: Und da kommen jetzt häufiger immer Mitglieder aus dem Blendless sozusagen auf mich zu und sagen, gibt es da nicht etwas mit KI, was ich quasi für die Nachhaltigkeitsreports machen kann.
+Tobias: Und da ich nicht vom Fach bin, was jetzt die ganze Thematik angeht, ich habe nur mal gehört, es gibt den CSRD, es gibt ganz viele Datenpunkte, die man sammeln muss.
+Tobias: Und dann habe ich zu denen gesagt, ich mache mich mal schlau sozusagen und habe quasi einmal CodeNetheraReporting gefunden.
+Tobias: Das ist quasi ein Mitbewerber von euch und eben bei euch habe ich das auch gefunden.
+Tobias: Das war auch eine Empfehlung von dem Regionalgruppenleiter von Bayern.
+Tobias: Der Lukas Spreiter hat Euch erwähnt, da wollte ich mir erstmal einen Überblick verschaffen, weil die Anfragen jetzt einfach immer mehr werden und bevor ich sage, ich habe gar keine Ahnung davon, wollte ich erstmal schauen, was gibt es da und an wen kann ich dann referenzieren.
+Tobias: Weil es geht vielleicht, das noch ganz kurz zusammengefasst, es ging Ihnen nicht nur darum, dass Sie quasi den Report erstellen nach den Standards von Europa, sondern dass Sie auch ins Handeln kommen.
+Tobias: Die haben mir einen Link gegeben, auch von Terry Reporting, dass die Daten erfassen haben, dann aber auch so ein Act-Teil sozusagen.
+Tobias: Genau, und da wollte ich jetzt mal schauen, was gibt es dann überhaupt für Anbieter und was kann ich denn als Empfehlung dann geben.
+CodeGaia: Ganz kurz, was sind das für Verbandsmitglieder?
+Tobias: Das ist ganz unterschiedlich.
+Tobias: Also das ist von produzierenden Unternehmen, also meistens aus der Fertigung.
+Tobias: Der klassische Mittelstand, sage ich jetzt mal.
+Tobias: Ja, das ist hauptsächlich so.
+CodeGaia: Und die würden hauptsächlich in die CSHD fallen, soweit sie das wissen.
+Tobias: Ja, genau, ich kenne mich da nicht so gut aus, sozusagen.
+CodeGaia: Ja, okay.
+Tobias: Die wussten nur, ich mache irgendwas mit KI und ich mache was mit Softwareentwicklung.
+Tobias: Und ich habe gesagt, ich entwickle nicht Software in diesem Bereich, ich mache nur Software, wo ich mich auch im Fachbereich auskenne, in der speziellen, und deswegen war das quasi deren Anforderung.
+CodeGaia: Ja, ähm...
+CodeGaia: Ich kann ein bisschen was zur Software erzählen, natürlich auch zu uns, aber ich würde auf jeden Fall empfehlen, wir machen einmal im Monat
+CodeGaia: im Rahmen von einer möglichen Zusammenarbeit in Partnerschaften, so eine Gruppendemo.
+CodeGaia: Nämlich auch bei meiner Kollegin, die so das Partnermanagement bei uns macht.
+CodeGaia: Da gibt es nochmal so ein ganz gesondertes Vorgehen auch, weil es dann darum geht, dass man sich gegenseitig quasi auch die Kunden vermittelt und so weiter.
+CodeGaia: Tatsächlich liegt das nicht bei mir.
+CodeGaia: Ich kann schon mal vorab sagen, der nächste Termin wäre, ich schaue mal eben ganz kurz, 13.
+CodeGaia: März um 10 Uhr.
+Tobias: Ja, hört sich schon gut an.
+CodeGaia: Wenn Sie da Zeit haben, dann würde ich Sie da schon mal zu einladen.
+Tobias: Ja, das würde passen.
+CodeGaia: Okay, weil die Katharina Hagen, meine Kollegin, die wäre dann auch sozusagen Ihre Ansprechpartnerin im weiteren Vorgehen.
+Tobias: Super, hört sich sehr gut an.
+CodeGaia: Okay, dann schicke ich das gleich noch raus.
+Tobias: Das war dann der 13.
+Tobias: März, hatte ich das richtig verstanden?
+CodeGaia: Mittwoch der 13., ja, um 10.
+Tobias: Um wie viel Uhr denn?
+CodeGaia: 10 Uhr.
+Tobias: Ah ja, da habe ich zwar einen Termin, aber den verschiebe ich.
+Tobias: Da gebe ich einfach Bescheid sozusagen, dass ich dann wichtigeres zu tun habe, in Anführungsstrichen.
+CodeGaia: Also sie würde dort in dem Termin auch uns nochmal umfangreicher vorstellen, auch mit Folien dazu, Referenzkunden und so weiter.
+CodeGaia: Also grundsätzlich ist es so, wir arbeiten mit einer KI, das ist schon ganz richtig, die
+CodeGaia: ist quasi an die, also nicht quasi, die ist an die Datenbanken angebunden aus den verschiedenen Regulatorien.
+CodeGaia: Also es gibt ja im Rahmen des CSAD oder des ESG-Reportings Regulatorien, die bestimmte Kennzahlen auch beinhalten und nach denen muss eben der Emissionswert ausgerechnet werden.
+CodeGaia: Damit das möglichst genau bestimmt werden kann, haben wir die KI an unterschiedliche Datenbanken, beispielsweise aus dem GHG-Protokoll, angebunden.
+Tobias: Ah ja, noch eine Frage oder besser gesagt eine Info dazu.
+Tobias: Ein potenzieller Kunde hat eine Software schon namens MyClimate, heißt es glaube ich, CO2-Kalkulator.
+Tobias: Fließt das dann auch mit rein sozusagen?
+CodeGaia: Genau, also es kommt immer so drauf an.
+CodeGaia: Wir machen bevor wir, also die Software muss nicht implementiert werden, wir machen aber trotzdem ein Onboarding, also es ist eine Web-Applikation.
+CodeGaia: Wir sitzen da auf deutschen Servern, AWS, und sind ISO 2701 zertifiziert, also da ist auch Informationssicherheit und so weiter gegeben, aber man muss sich trotzdem nichts runterladen, das ist einfach wie eine App mit einem Login.
+CodeGaia: Und je nachdem, wie die Daten vorhanden sind, also wir unterstützen auch bei der Datensammlung,
+CodeGaia: Wir haben auch größere Kunden, die beispielsweise auch eigene Systeme, je nachdem, was das auch für eine Branche ist, da gibt es ja auch spezifische Bugungssysteme, die da genutzt werden, oder einfach schlicht SAP.
+CodeGaia: Die Daten sind dann wahrscheinlich auch schon so gesammelt, oder wir nehmen eben Excel-Listen und laden diese hoch.
+CodeGaia: Wir haben auch Kunden, die bereits mit anderen Tools oder anderen Anbietern
+CodeGaia: da die Werte vorhanden haben, das können wir auch über eine Schnittstelle einfach hochladen.
+CodeGaia: Das ist überhaupt kein Problem.
+CodeGaia: Angefangen haben wir aber tatsächlich, und das machen auch noch die meisten unserer Kunden, mit dem reinen Upload der Rechnung, also der Verbrauchsrechnung.
+CodeGaia: Man kann das Ganze auch in so einem Mix gestalten.
+CodeGaia: Also wenn ich sage, ich habe zum Teil meine Verbräuche schon umgerechnet, wie Sie jetzt sagen, beispielsweise mit My Climate.
+CodeGaia: Das und laden das hoch.
+CodeGaia: Kommt noch was dazu, kann man auch einfach eine Rechnung nehmen, Tankbeleg oder was auch immer und den dann einfach hochladen.
+CodeGaia: Die KI ist so konzipiert, dass sie mit Rohdaten arbeitet.
+CodeGaia: Woher die kommen, ist dann am Ende tatsächlich egal.
+Tobias: Der eine gute hat ja noch gesagt,
+Tobias: ob es auch eine Möglichkeit besteht, dass es quasi kontinuierlich überprüft wird.
+Tobias: Es ist ja so, es gibt ja einmal entweder man tut das Initialbefüllen und da möchte er ja so Ziele festlegen, also zum Beispiel 10% Reduzierung von CO2 und da muss er ja immer kontinuierlich...
+Tobias: die neuesten Informationen mitgeben.
+Tobias: Ist es dann auch so ein kontinuierlicher Prozess, wo man das... Genau.
+CodeGaia: Ja, also wir lassen natürlich auch nicht die KI einfach nur rein damit arbeiten, sondern es gibt, wir haben ein größeres Nachhaltigkeitsteam, was natürlich in der Lage ist, da als fester Ansprechpartner zu fungieren.
+CodeGaia: Also man bekommt im Rahmen des Onboardings, indem wir die Unternehmensstruktur einmal in der Software aufsetzen.
+CodeGaia: Also es gibt auch Kunden, die natürlich Untergesellschaften haben, für die sie dann einzeln berichten und Daten sammeln.
+CodeGaia: Das wird einmal so aufgesetzt, also quasi gespiegelt in der Software und im Rahmen dieses Onboardings bekommt man einen festen Ansprechpartner aus dem Nachhaltigkeitsteam, der da auch dieses Monitoring quasi macht.
+CodeGaia: Also es fängt an bei der Datenerhebung, dann eben diese Kontinuität der Dateneingabe und zum Ende hin natürlich auch Optimierungsmaßnahmen.
+CodeGaia: Dass man Kennwerte hat, an denen man sich orientieren kann, damit man im Anschluss auch ein Optimierungsprotokoll quasi erstellen kann.
+Tobias: Ah ja, das ist eine klare Abhebung gegenüber Terra Reporting, weil die haben ihren Sitz in Brüssel und die bieten, soweit ich das weiß, leider haben sie noch gar nicht reagiert auf meine Anfrage, gar keinen deutschen Ansprechpartner.
+Tobias: Und viele Mittelständler, die mich anfragen möchten, natürlich auch einen deutschen Ansprechpartner, dass wir eben gemeinsam auch kontinuierlich das weiterführen.
+Tobias: Das heißt, ich könnte ihnen quasi dann One Pager von euch geben und
+Tobias: die Einladung zum Link sowie im Gespräch, wie wir gerade führen, dass die ein initiales Gespräch führen, wenn ich dann nochmal so eine Anfrage bekomme?
+Tobias: Oder wird es dann besprochen im Termin im März, wie dann so eine klassische Vorgehensweise wäre?
+CodeGaia: Also wir, genau, würden das dann nochmal gesondert besprechen.
+CodeGaia: Wenn Sie jetzt sagen, Sie haben ad hoc einige Kunden, für die das in Frage kommt, dann müssten wir nochmal einen persönlichen Termin mit der Frau Hagemann
+CodeGaia: ausmachen.
+CodeGaia: Aber wenn Sie jetzt erstmal sammeln und sagen, Sie gucken sich das an, ich schicke Ihnen auch nochmal unsere Unternehmenspräsentation, da sind auch so ein paar Folien dabei, die die Software näher betrachten.
+CodeGaia: Und wenn Sie dann konkreter werden wollen, dann würden wir nochmal einen privaten Termin quasi außerhalb dieser Demo machen.
+Tobias: Ja, das wäre klasse, wenn es konkreter wird.
+Tobias: Um ganz ehrlich zu sein, das ist nicht so mein Kernfokus, die Nachhaltigkeit.
+Tobias: Ich habe eben die Anfragen bekommen, wollte sie nicht abwimmeln und wollte mich nebenher darum kümmern, aber das mache ich jetzt nicht hundertprozentig.
+Tobias: Da arbeiten wir an KI-Lösungen für die Produktion, also das ist mein Hauptschwerpunkt mit Servern in Deutschland, aber so die Nachhaltigkeit nicht.
+Tobias: Deswegen würde ich vorschlagen,
+Tobias: dann werde ich die Präsentation mir gerne einmal anschauen und im März dann auch die Demo mit Ihrer Kollegin.
+CodeGaia: Ja, super, machen wir so.
+CodeGaia: Klasse.
+CodeGaia: Also wenn Sie sagen, in der Zwischenzeit, ich meine, es sind jetzt noch zwei Wochen, glaube ich, bis dahin, drei Wochen, wenn Sie da in der Zwischenzeit sagen, wir werden jetzt konkreter, ich habe hier fünf Kunden, die ad hoc eine Lösung brauchen, dann würden wir es auch nochmal so terminieren, dass Sie persönlich mit Frau Hagemann vorab schon sprechen.
+CodeGaia: Wir kennen das so, dass viele auch erstmal heroieren, sich verschiedene Lösungen anschauen.
+CodeGaia: Deswegen bieten wir eben diese Gruppendemos an.
+CodeGaia: Aber wenn Sie sagen, das brennt jetzt dann doch, dann melden Sie sich gerne.
+CodeGaia: Aber ich schicke Ihnen die Einladung, die Präsentation und dann ist Frau Hagemann der weitere Ansprechpartner.
+Tobias: Ja, ich bin zwar nicht so tief im Thema, aber meine Befürchtung ist eher, dass es viele bis ans Ende des Jahres schieben und dann brennt auf einmal die Hütte und dann müssen sie sich schnell weiterstellen.
+CodeGaia: Ja, gut, uns gibt das natürlich auch die Möglichkeit, also wir kennen den Prozess, wir haben jetzt überwiegend Kunden, die natürlich erstmal nur Daten sammeln, aber wir entwickeln ja auch die Software weiter.
+CodeGaia: Es gibt unterschiedliche Module, die da noch reinkommen müssen, weil das Thema ja sehr, sehr umfangreich ist und man es doch so ein bisschen runterbrechen muss.
+CodeGaia: Es gibt ja auch noch die Anforderung, dass man die Stakeholder-Analyse macht und so weiter.
+CodeGaia: Das ist jetzt gerade alles noch in der Implementierung.
+CodeGaia: Von daher, also für uns ist es eher ein Vorteil, wenn alle noch so ein bisschen zögerlich unterwegs sind.
+CodeGaia: Nächstes Jahr wird das Pflicht.
+CodeGaia: Und bis dahin sind wir auch dann bestens vorbereitet.
+CodeGaia: Aber die Vorlagen können wir noch mal alles vorstellen mit den einzelnen Modulen, die jetzt auch noch kommen im zweiten Quartal und so weiter.
+Tobias: Super, hört sich echt gut an und vor allem auch mit der Zeit haben Sie auch sehr viele Expertise dann gesammelt.
+Tobias: So dann, wenn ein Mittelständler kommt und sagt, warum sollte ich es nicht selbst implementieren, da sage ich dann, die Branchenerfahrung ist da, Sie haben schon viele Kunden begleitet, warum dann nicht quasi dort zu Code Gaia gehen?
+Tobias: Super, dann vielen Dank schon mal für alles, dann freue ich mich auf die Folie.
+CodeGaia: Sehr gerne, ich schicke das alles ab.
+Tobias: Klasse, sobald sich dann was Akutes ergibt, werde ich mich melden, ansonsten freue ich mich dann auf den Termin im März.
+CodeGaia: Ja, machen wir so.
+Tobias: Einen schönen Tag, vielen Dank, ciao.
