@@ -1,0 +1,142 @@
+SPEAKER_01: Da an der Stelle jetzt quasi schon abgespeckt ist und auf unsere Bedürfnisse zugeschnittenes Objekt zurückliefert.
+SPEAKER_01: Das heißt, wir haben die Schnittstelle zum Backend, haben wir im Repository halt jetzt schon so eingeschränkt, dass sie jetzt so nicht wiederverwendbar ist.
+SPEAKER_01: Was halt irgendwie unschön ist.
+SPEAKER_01: Das hat sich schon mal zwischendurch angesprochen, dass wir eigentlich im Repository ja nichts anderes tun wollen, als quasi das Mapping von
+SPEAKER_01: Also eigentlich ist ja das Support Story ein Adapter, ne?
+SPEAKER_01: Und wir wollen jetzt quasi ein Adapter schaffen zwischen der HTTP-Schnittstelle von Synapse und unserem internen Datenmodell.
+SPEAKER_01: Und das interne Datenmodell, das nutzen wir dann, um dann halt irgendwie Überarbeitung zu machen oder keine Ahnung was, und haben dann noch ein externes Datenmodell, das was quasi unsere AARP anbietet.
+SPEAKER_01: Also diese Trennung sollten wir halt gucken, dass wir das halt irgendwie sauber haben.
+SPEAKER_01: Das heißt, meine Bitte wäre eigentlich, wenn ich jetzt gleich, also ich kann das jetzt auch schon pushen, da habe ich jetzt in dem Model habe ich, und da können wir ja vielleicht auch gerade noch mal darüber diskutieren, habe ich jetzt einfach noch mal ein neues User-Device angelegt, was halt den original User-Device von Synapse betrifft, wo dann halt alle Attribute drin stehen.
+SPEAKER_01: Und das ist auch das, was wir halt an das Content liefern müssen.
+SPEAKER_01: Diese User-Device-Tabelle im Content beinhaltet halt alle Felder.
+SPEAKER_01: Das heißt, wir brauchen dieses Datenobjekt.
+SPEAKER_01: Und wir müssen jetzt quasi ein Refactoring vornehmen, was halt zum einen dazu führt, dass das Repository halt diese Datenstruktur 1 zu 1 hochreicht.
+SPEAKER_01: Das heißt, wenn man User-Server, also Raw-Devices bezeichnet, das muss halt auch vom Typ User-Devices sein.
+SPEAKER_01: Dann müssen wir halt gucken, dass wir an der Stelle natürlich den User-Service wieder anpassen und der dann halt auf das Repository zugreifen und da die Daten halt rauskriegen, so wie wir sie erwarten.
+SPEAKER_01: Damit wir dann halt den Service wiederverwenden können im User-Service, um einmal die hohen Daten zu bekommen und die Daten, so wie wir sie für die Services benötigen, die wir bisher implementiert haben.
+SPEAKER_01: Das war hier die Benutzerübersicht, wo ein Teil des Ergebnisses reinfließt.
+SPEAKER_01: und die KPIs.
+SPEAKER_00: Das heißt Repo weniger Geschäfts-Business-Logik das rauswerfen.
+SPEAKER_01: Genau, eigentlich sollte da gar keine Business-Logik drin sein.
+SPEAKER_01: Da sollte nach Möglichkeit halt wirklich nur der reine Aufruf sein und die Business-Logik als solche sollte dann im Service enthalten sein.
+SPEAKER_01: Also sowohl Repository-Orchestrierung oder von mir aus Reduzierung oder Ummapping von den Objekten.
+SPEAKER_00: Okay, und bei den Entitäten haben wir eine Entität, die quasi in der Liste vom Benutzer zurückgegeben wird und als einzelnes über die Device API.
+SPEAKER_00: Beim einzelnen Benutzer meine ich.
+SPEAKER_01: Habe ich jetzt nicht verstanden, was du damit meinst.
+SPEAKER_00: Ja, wir haben hier eine Benutzerliste und die kriegt aktuell nur eine Übersicht von Devices.
+SPEAKER_00: Und die schränken wir schon ein.
+SPEAKER_00: Aber du hast jetzt eine Entität, wo bei der Benutzerdetailansicht die API dann alle Devices zurückgibt.
+SPEAKER_00: Oder vielleicht muss ich es mir noch mal angucken.
+SPEAKER_00: Oder hast du dann API dann quasi explizit Devices für Benutzer zurückgibt?
+SPEAKER_01: Genau, wir haben einen API, wir haben einen neuen Endpunkt.
+SPEAKER_01: Ich kann das ja schon mal commiten, auch wenn das jetzt nicht lauffähig ist, das ist ja egal.
+SPEAKER_01: Ich push das einfach mal, was ich bisher hab.
+SPEAKER_01: Oder warte mal, gerade einmal muss ich noch das Resorting Order machen und dann ist das auch bildfähig.
+SPEAKER_00: Zwei Sekunden.
+SPEAKER_01: Untertitel der Amara.org-Community
+SPEAKER_01: Da ist irgendwas kaputt gegangen, wo ich nicht erwarten würde.
+SPEAKER_01: Ich melde mich in 5 Minuten nochmal, ja?
+SPEAKER_00: Alles klar, bis gleich.
+SPEAKER_01: Jo, bis gleich.
+SPEAKER_00: Vielen Dank, dass Sie sich für Webex entschieden haben.
+SPEAKER_00: User's Endpoint?
+SPEAKER_00: Ja.
+SPEAKER_??: Genau, sondern da den Endpunkt User's User ID Device.
+SPEAKER_00: Ja, habe ich.
+SPEAKER_00: Okay, so.
+SPEAKER_00: Ähm, da gibt's jetzt ein Response-Model in der User-Device-List.
+SPEAKER_??: Ja.
+SPEAKER_01: Und die User-Device-List, die enthält ein User-Device.
+SPEAKER_01: Und das ist nochmal ein User-Device, was du jetzt da draufklickst und dahin navigierst.
+SPEAKER_01: Dann haben wir jetzt ein User-Device, äh, Pi in der, äh, Model.
+SPEAKER_01: Mhm.
+SPEAKER_01: Äh, Model-Package.
+SPEAKER_01: Und da ist jetzt quasi nochmal abgebildet ein User-Device, so wie es von, ähm,
+SPEAKER_01: So wie es von Synapse zurückgeliefert wird.
+SPEAKER_00: Ah ja, verstehe.
+SPEAKER_00: Das Original, sozusagen.
+SPEAKER_01: Genau, das ist das Original.
+SPEAKER_01: Und eigentlich brauchen wir jetzt im Repository eine Methode, die auf dieses User-Device zugreift.
+SPEAKER_01: Was jetzt aber das Problem ist, und da müssen wir uns vielleicht von der Namensgebung nochmal kurz austauschen, ist, wir haben schon ein User-Device in UserPi, was halt diese abgespeckte Variante betrifft, ne?
+SPEAKER_??: Mhm.
+SPEAKER_01: Das muss ich mal gucken, wo sich das überall wiederfindet.
+SPEAKER_00: Ah ja, hier UserDevice mit zwei Attributen.
+SPEAKER_01: In User, Model.
+SPEAKER_01: Also Models, User, Python.
+SPEAKER_01: Genau, und das ist ja quasi so ein Internetobjekt, was an verschiedenen Stellen genutzt wird und das müssten wir halt jetzt an der Stelle halb refactoren, dass wir da die Füße nicht durcheinander kriegen.
+SPEAKER_01: Das würde ich vielleicht an der Stelle auch tatsächlich nicht UserDevice nennen, sondern
+SPEAKER_01: Vielleicht nennen wir das Brief-User-Device?
+SPEAKER_01: Nee.
+SPEAKER_00: Das ist eigentlich ja, äh, um Verständnis, da nochmal vielleicht brainstorming zu machen, das ist eigentlich das Device nur für eine Liste von Usern.
+SPEAKER_00: Als wäre es quasi so eine Zusammenfassung.
+SPEAKER_01: Dieses User-Device, was wir bisher haben, wir haben mit dem Last Scene und dem Device-Type, ne?
+SPEAKER_00: Ja, genau.
+SPEAKER_00: Also umbenennen müssen wir es auf jeden Fall.
+SPEAKER_00: Das, was du jetzt gemacht hast, das passt mit UserDevice, aber das UserDevice mit nur zwei Attributen, das müsste, glaube ich, einen anderen Namen bekommen.
+SPEAKER_01: Ja, genau, das müsste noch einen anderen Namen bekommen und es ist so, dass das UserDevice, das ich gebaut habe, das hat jetzt auch einen DeviceType.
+SPEAKER_01: Den würde ich auch mit nach oben geben.
+SPEAKER_01: Wir haben das jetzt noch nicht besprochen im Refinement, aber ich glaube, dass es schon Sinn machen würde, in der Liste der
+SPEAKER_01: In der Liste der Devices auch den Typen nochmal anzuzeigen.
+SPEAKER_01: Es wird zwar auch der Last-Seen-User-Agent angezeigt, aber da wir ja in der Übersicht und in den KPIs ja auch immer von Geräte-Typen sprechen, wäre es wahrscheinlich auch gut, den Geräte-Typen dann an der Stelle auch in der Liste darzustellen.
+SPEAKER_01: Deswegen hatte ich den hier in den User-Devices mit angenommen.
+SPEAKER_01: Was jetzt an der Stelle natürlich fancy wäre, wäre natürlich, wenn der Device-Type dann automatisch, wenn das User-Device-Objekt initialisiert wird, dass dann auch automatisch der Typ gesetzt wird.
+SPEAKER_01: Ich habe das ja ähnlich mit dem User-Validator gemacht, mit dem ID-Validator, das können wir jetzt für den User-Type halt auch nochmal machen.
+SPEAKER_01: Also quasi die Methode zum Ermitteln des Device-Types vielleicht als Validator hier nochmal implementieren.
+SPEAKER_00: Ah, mhm.
+SPEAKER_00: Kann ich machen.
+SPEAKER_01: Das wäre halt noch eine Idee, aber ich glaube, damit wir uns da jetzt nicht zu sehr ins Gehege kommen, wäre halt tatsächlich der erste Schritt, dass wir halt versuchen nochmal das Repository an der Stelle einmal gerade zu ziehen.
+SPEAKER_01: Und da wäre halt, wie gesagt, die erste Aufgabe, dass wir da halt den Endpunkt oder das User Repository quasi eine Methode anbieten, die heißt getUserDevices.
+SPEAKER_01: Und das liefert eine Liste 1 zu 1 von dem, was aus Synapse zurückkommt.
+SPEAKER_01: Was wir hier an der Stelle allerdings haben, ist, dass Synapse auch ein Total-Objekt liefert.
+SPEAKER_01: Also das heißt, eigentlich müssten wir, wenn wir das 1 zu 1 durchreichen wollen, müssten wir noch ein List-Objekt haben, also eine User-Device-List, die auch noch ein Total-Attribut hat.
+SPEAKER_01: Das können wir natürlich jetzt hier an der Stelle auch nochmal einfach hinzufügen.
+SPEAKER_01: Und dann entspricht es dann auch dem aus dem Backend.
+SPEAKER_00: Ah ja, und die Verarbeitung mit Raw Devices, das kommt dann in den User Service?
+SPEAKER_01: Genau, das kommt dann in den User Service, genau.
+SPEAKER_01: Genau, und dann müssen wir halt nochmal gucken, was das für Implikationen hat.
+SPEAKER_01: Aber da können wir grad nochmal gucken.
+SPEAKER_01: Ich guck da auch nochmal tiefer rein.
+SPEAKER_01: Repositories.
+SPEAKER_01: Get Users.
+SPEAKER_01: Im Endeffekt würde ich jetzt erwarten, dass der User-Repository einen Aufruf gegen Synapse macht.
+SPEAKER_01: Also die Zeile 78 bleibt bestehen.
+SPEAKER_01: Dann haben wir hier die HTTP-Status-Code-Verarbeitung.
+SPEAKER_01: Wenn er ungleich 200 ist, wird eine Exception geworfen.
+SPEAKER_01: Hier können wir uns vielleicht auch schon überlegen, dass wir da eine HTTP-Exception werfen.
+SPEAKER_01: Wobei, ist egal.
+SPEAKER_01: Lassen wir das erstmal vor.
+SPEAKER_01: Und dann haben wir halt das Mapping von dem Datenmodell, von dem Synapse, auf unser Patenting-Model.
+SPEAKER_01: Hier an der Stelle.
+SPEAKER_01: Genau.
+SPEAKER_01: Da brauchen wir gar nicht über die Raw-Devices iterieren, sondern dann können wir das Ganze... Es gibt eine Methode, die heißt... ...vom JSON, oder vom Dict, und dann hat man diese Iterationen hier, die würde man sich jetzt hier an der Stelle sparen, um das User-Device zu bauen.
+SPEAKER_00: Okay, verstehe.
+SPEAKER_00: Und das Iterieren machen wir dann in den User-Service?
+SPEAKER_01: Genau.
+SPEAKER_01: Und dann iterieren wir ja an der Stelle auch schon über Objekte von Patent-User-Devices.
+SPEAKER_01: Und dann haben wir dann halt auch diese Unschönheit, dass wir da so oft auch die Indizierung der Objekte hier jeweils mit Strings vornehmen müssen.
+SPEAKER_01: Wir würden dann typisiert auch auf die
+SPEAKER_00: Ich sehe es gerade in User Service, in Zeile 1.60 machen wir ja nun Get-User-Devices.
+SPEAKER_00: Das geben wir 1 zu 1 zurück und da wird jetzt in Zukunft auch das Iterieren sein über die Raw-Devices und das Anreichern.
+SPEAKER_00: Genau.
+SPEAKER_00: Okay, das ist super, da weiß ich Bescheid.
+SPEAKER_00: Soll ich dann direkt loslegen?
+SPEAKER_01: Ähm, genau.
+SPEAKER_01: Ja, aber dann vielleicht im ersten Schritt tatsächlich nur das machen, ne?
+SPEAKER_01: Also nur die Methode aus dem Get-User-Devices einmal refactoren und
+SPEAKER_01: Genau, und noch das Objekt, dieses User-Device und das Total erweitern.
+SPEAKER_00: Okay, ich mache jetzt nur User-Repository, quasi die Logik dann in den User-Service, getUser-Devices umwandeln und die Tests gegebenenfalls anpassen.
+SPEAKER_01: Ja, genau.
+SPEAKER_01: Und ach so, ja, das Total, das würde ich jetzt gerade noch fertig machen, damit wir den von den, ach so, vielleicht guckst du auch einmal kurz auf die Schnittstelle drauf.
+SPEAKER_01: Machst du schon mal so ein Review auf die AP, damit ich dann das mit dem Frontend abstimmen kann und die zur Verfügung stellen?
+SPEAKER_00: Alles klar, mach ich.
+SPEAKER_01: Okay.
+SPEAKER_01: Dann kannst du mich ja kurz über Boomhub anpingen, wenn's passt.
+SPEAKER_00: Mit dem MR meinst du?
+SPEAKER_01: Achso, ja, einen MR müsste ich auch noch erstellen, ne?
+SPEAKER_01: Da wollte ich dann die Jason wieder ranhängen, warte, das ist eine gute Idee.
+SPEAKER_01: Aber die MR, die Jason würde ich erst dran hängen, wenn du sagst, dass die Schnittstelle so, also dass ich da nichts zu versehen habe.
+SPEAKER_00: Hast du erstmal so einen Quellcode angucken oder erstellst du eine MR?
+SPEAKER_00: Ja, ich erstelle eine MR. Okay.
+SPEAKER_00: Alles klar.
+SPEAKER_00: Gib mir einfach Bescheid, sobald die MR da ist, dann gebe ich dir Bescheid, wenn dann alles passt.
+SPEAKER_00: Alles klar, bis dann.

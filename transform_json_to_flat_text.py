@@ -1,7 +1,7 @@
 import json
 
 # Pfad zur JSON-Datei
-json_dateipfad = 'data.json'
+json_dateipfad = './data/gold/Deepset.json'
 
 # Funktion zum Laden und Verarbeiten der JSON-Daten
 def verarbeite_json(json_dateipfad):
@@ -27,7 +27,7 @@ def verarbeite_json(json_dateipfad):
 formatierter_text = verarbeite_json(json_dateipfad)
 
 # Speichere den formatierten Text in einer Textdatei
-ausgabe_dateipfad = 'transkript.txt'  # Zieltextdatei
+ausgabe_dateipfad = './data/gold/Deepset.txt'  # Zieltextdatei
 with open(ausgabe_dateipfad, 'w', encoding='utf-8') as ausgabe_datei:
     ausgabe_datei.write(formatierter_text)
 
